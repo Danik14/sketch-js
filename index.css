@@ -46,8 +46,6 @@ body {
 
 .pixel {
   display: inline-block;
-  width: 20vh;
-  height: 20vh;
   background-color: red;
   margin: 0;
   padding: 0;
