@@ -1,36 +1,69 @@
-function addPixel(number) {
+function addPixel() {
   const grid = document.getElementById("grid");
   const pixel = document.createElement("div");
-  const width = 100 / number;
-  const height = width;
-  pixel.classList.add("pixel");
   pixel.addEventListener("mouseover", function (event) {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
     event.target.style.backgroundColor = "#" + randomColor;
   });
-  pixel.style.width = width + "vh";
-  pixel.style.height = height + "vh";
-
   grid.appendChild(pixel);
 }
 
 function addMultiplePixels(number) {
-  const grid = number * number;
-  for (let i = 0; i < grid; i++) {
-    addPixel(number);
+  const numberOfPixels = number * number;
+  const grid = document.getElementById("grid");
+  grid.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${number}, 1fr)`;
+  for (let i = 0; i < numberOfPixels; i++) {
+    addPixel();
   }
 }
 
 function choosePixels() {
   const number = parseInt(
-    prompt("Plase enter NxN size of sketch box (no more than 20)")
+    prompt("Plase enter NxN size of sketch box (no more than 64)")
   );
-  if (number > 40) {
+  if (number > 64) {
     return;
   }
   addMultiplePixels(number);
 }
 
-const button = document.getElementById("btn");
-button.addEventListener("click", () => choosePixels());
+function chooseColors() {
+  const pixels = document.getElementById("grid").getElementsByTagName("div");
+  for (let i = 0; i < pixels.length; i++) {
+    pixels[i].addEventListener("mouseover", function (event) {
+      event.target.style.backgroundColor = "black";
+    });
+  }
+}
+
+function chooseRandom() {
+  const pixels = document.getElementById("grid").getElementsByTagName("div");
+  for (let i = 0; i < pixels.length; i++) {
+    pixels[i].addEventListener("mouseover", function (event) {
+      const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+      event.target.style.backgroundColor = "#" + randomColor;
+    });
+  }
+}
+
+function chooseEraser() {
+  const pixels = document.getElementById("grid").getElementsByTagName("div");
+  for (let i = 0; i < pixels.length; i++) {
+    pixels[i].addEventListener("mouseover", function (event) {
+      event.target.style.backgroundColor = "white";
+    });
+  }
+}
+
+addMultiplePixels(16);
+const buttonChoose = document.getElementById("choose");
+const buttonColors = document.getElementById("colors");
+const buttonRandom = document.getElementById("random");
+const buttonEraser = document.getElementById("eraser");
+
+buttonRandom.addEventListener("click", () => chooseRandom());
+buttonEraser.addEventListener("click", () => chooseEraser());
+buttonColors.addEventListener("click", () => chooseColors());
+buttonChoose.addEventListener("click", () => choosePixels());
 console.log(100 / 8);

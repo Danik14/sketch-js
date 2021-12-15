@@ -8,11 +8,23 @@
     <title>Sketch</title>
   </head>
   <body>
-    <div class="wrapper">
-      <button id="btn" class="btn">Choose pixels</button>
-      <div class="box"><div id="grid" class="grid"></div></div>
-    </div>
+    <header class="header">
+      <h1>Sketch</h1>
+    </header>
+    <div class="content">
+      <div class="buttons">
+        <ul>
+          <li><button id="colors" class="btn">Black Color</button></li>
+          <li><button id="eraser" class="btn">Eraser</button></li>
+          <li><button id="random" class="btn">Random Color Mode</button></li>
+          <li>
+            <button id="choose" class="btn">Choose amount of Pixels</button>
+          </li>
+        </ul>
+      </div>
 
+      <div id="grid" class="grid"></div>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
